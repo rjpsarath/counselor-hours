@@ -18,7 +18,7 @@
             e.preventDefault();
             var email = document.getElementById('email').value;
             var password = document.getElementById('password').value;
-            fetch('YOUR_GOOGLE_APPS_SCRIPT_URL/login?email=' + email + '&password=' + password, {
+            fetch('https://script.google.com/macros/s/AKfycbyiUtUHo3uKQQahwLIIOMOJLbz6kXP8bJHc8p9xOfCCiQJayXIhnIMJhkn_dGBYauSm/exec/login?email=' + email + '&password=' + password, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             })
