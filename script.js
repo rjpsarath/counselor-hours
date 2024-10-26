@@ -1,6 +1,6 @@
 async function fetchData() {
     // Replace with your Google Apps Script Web App URL
-    const apiUrl = 'https://script.google.com/macros/s/AKfycbzfbCskkQV0d-5hNJhIIzFIBICDeeGzF3y8xlq2GrEmuFoPkNYZUC-CwAZeF3MGxYwHnw/exec';
+    const apiUrl = 'https://script.google.com/macros/s/AKfycbw7gUPDlfRSIteHRjG2Oy2CjeSm_TjKZPc_4gycs6sgXY-Bqmp0Qa86FrgW0Un8DtIrug/exec';
 
     try {
         const response = await fetch(apiUrl);
