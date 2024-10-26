@@ -1,29 +1,31 @@
-async function fetchData() {
-    // Replace with your Google Apps Script Web App URL
-    const apiUrl = 'https://script.google.com/macros/s/AKfycbw7gUPDlfRSIteHRjG2Oy2CjeSm_TjKZPc_4gycs6sgXY-Bqmp0Qa86FrgW0Un8DtIrug/exec';
+document.getElementById('feedbackForm').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Gather form data
+    const formData = {
+        counselorName: document.getElementById('counselorName').value,
+        date: document.getElementById('date').value,
+        screeningHours: document.getElementById('screeningHours').value,
+        interviewHours: document.getElementById('interviewHours').value,
+        comments: document.getElementById('comments').value,
+    };
 
     try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-
-        const tableBody = document.querySelector('#hoursTable tbody');
-        tableBody.innerHTML = ''; // Clear previous data
-
-        data.forEach((entry) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${entry['Counselor Name']}</td>
-                <td>${entry['Date']}</td>
-                <td>${entry['Screening Hours']}</td>
-                <td>${entry['Interview Hours']}</td>
-                <td>${entry['Comments']}</td>
-                <td>${entry['Approval Status']}</td>
-            `;
-            tableBody.appendChild(row);
+        const response = await fetch('https://script.google.com/macros/s/AKfycbw8VzZWHisMl1Hwg2IY--4E6el_7HVDNx7zPJ4KvgDQVd6glNN0eAqhtjkqnQpfT_r9AA/exec', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
         });
-    } catch (error) {
-        console.error("Error fetching data:", error);
-    }
-}
 
-fetchData();
+        const result = await response.json();
+        document.getElementById('responseMessage').innerText = "Feedback submitted successfully!";
+    } catch (error) {
+        console.error('Error submitting feedback:', error);
+        document.getElementById('responseMessage').innerText = "Error submitting feedback. Please try again.";
+    }
+
+    // Reset the form
+    document.getElementById('feedbackForm').reset();
+});
