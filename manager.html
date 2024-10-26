@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Page</title>
+</head>
+<body>
+    <h1>Manager Page</h1>
+    <div id="feedback-list"></div>
+    <script>
+        fetch('YOUR_GOOGLE_APPS_SCRIPT_URL/getFeedback', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const feedbackList = document.getElementById('feedback-list');
+            data.forEach(item => {
+                const feedbackItem = document.createElement('div');
+                feedbackItem.innerText = `Email: ${item[0]}, Feedback: ${item[1]}, Date: ${item[2]}`;
+                feedbackList.appendChild(feedbackItem);
+            });
+        });
+    </script>
+</body>
+</html>
