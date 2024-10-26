@@ -18,7 +18,7 @@
             e.preventDefault();
             var email = document.getElementById('email').value;
             var feedback = document.getElementById('feedback').value;
-            fetch('YOUR_GOOGLE_APPS_SCRIPT_URL/submitFeedback?email=' + email + '&feedback=' + feedback, {
+            fetch('https://script.google.com/macros/s/AKfycbyiUtUHo3uKQQahwLIIOMOJLbz6kXP8bJHc8p9xOfCCiQJayXIhnIMJhkn_dGBYauSm/exec/submitFeedback?email=' + email + '&feedback=' + feedback, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' }
             })
